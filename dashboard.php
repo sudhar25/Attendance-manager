@@ -126,15 +126,15 @@
     <div class="row">
       <div class="box">
         <img src="image/add_subject.png" alt="Add Subject">
-        <button onclick="location.href='add-subject.php'">Add Subject</button>
+        <button onclick="location.href='add_subject.php'">Add Subject</button>
       </div>
       <div class="box">
         <img src="image/mark_attendance.png" alt="Mark Attendance">
-        <button onclick="location.href='mark-attendance.php'">Mark Attendance</button>
+        <button onclick="location.href='mark_attendance.php'">Mark Attendance</button>
       </div>
       <div class="box">
         <img src="image/view_graph.png" alt="View Graph">
-        <button onclick="location.href='view-graph.php'">View Graph</button>
+        <button onclick="location.href='view_graph.php'">View Graph</button>
       </div>
       <div class="box">
         <img src="image/restart.png" alt="Restart">

@@ -132,13 +132,13 @@ $subjects = $conn->query("SELECT id, name FROM subjects");
         </form>
         <br>
         <a href="view_graph.php"><button>View Graph</button></a>
-        <a href="restart_semester.php" onclick="return confirm('Are you sure? This will delete all attendance and subjects!');">
+        <a href="restart.php" onclick="return confirm('Are you sure? This will delete all attendance and subjects!');">
             <button style="background-color: red;">Restart Semester</button>
         </a>
     </div>
 
     <footer>
-        © 2025 All rights are reserved by Attendance Tracker.
+    @ 2025 All rights are reserved by GOOD FELLAS.
     </footer>
 
 </body>

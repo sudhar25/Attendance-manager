@@ -2,14 +2,13 @@
 include 'database.php';
 session_start();
 
-// Simulated student login — replace with actual AWS login session
 $student_id = $_SESSION['student_id'] ?? 1;
 
-// Delete student-specific attendance records
+// Delete only that student's attendance
 $conn->query("DELETE FROM attendance WHERE student_id = $student_id");
 
-// Delete all subjects
-$conn->query("DELETE FROM subjects");
+// Delete only that student's subjects
+$conn->query("DELETE FROM subjects WHERE student_id = $student_id");
 
-echo "<script>alert('Semester restarted successfully!'); window.location.href='mark_attendance.php';</script>";
+echo "<script>alert('Semester restarted successfully! Please add new subjects.'); window.location.href='add_subject.php';</script>";
 ?>

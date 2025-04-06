@@ -78,7 +78,7 @@ while ($subject = $subjects_result->fetch_assoc()) {
     </div>
 
     <footer>
-        © 2025 All rights are reserved by Attendance Tracker.
+    @ 2025 All rights are reserved by GOOD FELLAS.
     </footer>
 
     <script>

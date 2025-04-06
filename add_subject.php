@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["subject_name"])) {
     </div>
 
     <footer>
-        © 2025 All rights are reserved by Attendance Tracker.
+    @ 2025 All rights are reserved by GOOD FELLAS.
     </footer>
 
 </body>
