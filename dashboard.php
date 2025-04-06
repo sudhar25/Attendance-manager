@@ -144,7 +144,17 @@
 
     <!-- Bottom guidance paragraph -->
     <div style="margin-top: 40px; text-align: center; font-size: 16px; max-width: 700px; margin-left: auto; margin-right: auto;">
-      <p>To begin using the Attendance Tracker, click on "Add Subject" to start creating your subjects. Then, use "Mark Attendance" daily and view your performance in the graph section. You can restart the tracker anytime using the restart button.</p>
+      <p>1.Attendance is 75% compulsory.<br>
+       <br> 2.If attendance is lower than 75% then you will not be allowed for Internal Assesment.<br>
+        <br>3.Provide the proof if you have the valid reason to your class incharge<br>
+        <br>
+        <br>GUIDE:(if you are new)<br>
+
+        <br>To begin using the Attendance Tracker, click on "Add Subject" to start creating your subjects.<br>
+
+        <br>Then, use "Mark Attendance" daily and view your performance in the graph section.<br> 
+
+        <br>You can restart the tracker anytime using the restart button.<br></p>
     </div>
   </div>
 
