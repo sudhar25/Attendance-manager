@@ -40,5 +40,5 @@ $conn->query($sql_students);
 $conn->query($sql_subjects);
 $conn->query($sql_attendance);
 
-echo "Database connected and tables created successfully.";
+//echo "Database connected and tables created successfully.";
 ?>
