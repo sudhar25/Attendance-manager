@@ -26,3 +26,6 @@ A web-based Attendance Tracker system built using **PHP**, **SQLite**, **HTML/CS
 -AWS Cognito for Authentication
 -Chart.js for attendance graph
 -XAMPP for local PHP server
+
+# For more details contact us
+
