@@ -1,11 +1,10 @@
 <?php
 session_start();
 
-// Include DB connection
 include 'database.php';
 
 if (!isset($_SESSION['user_email'])) {
-    // If not logged in, redirect
+    
     header("Location: http://localhost/Attendance-manager/");
     exit;
 }
@@ -13,14 +12,14 @@ if (!isset($_SESSION['user_email'])) {
 $email = $_SESSION['user_email'];
 $name = $_SESSION['user_name'] ?? '';
 
-// Get student ID from DB
+
 $stmt = $conn->prepare("SELECT id FROM students WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    // If user not found (shouldn't happen), insert them
+    
     $insert = $conn->prepare("INSERT INTO students (name, email) VALUES (?, ?)");
     $insert->bind_param("ss", $name, $email);
     $insert->execute();
