@@ -4,8 +4,11 @@ include 'database.php';
 session_start();
 $student_id = $_SESSION['student_id'] ?? 1;
 
-// Fetch subjects
-$subjects_result = $conn->query("SELECT id, name, total_lectures FROM subjects");
+// Fetch subjects for this student
+$stmt = $conn->prepare("SELECT id, name, total_lectures FROM subjects WHERE student_id = ?");
+$stmt->bind_param("i", $student_id);
+$stmt->execute();
+$subjects_result = $stmt->get_result();
 
 $subject_names = [];
 $attendance_percentages = [];
@@ -15,13 +18,13 @@ while ($subject = $subjects_result->fetch_assoc()) {
     $subject_name = $subject['name'];
     $total_lectures = $subject['total_lectures'];
 
-    // Count number of times the student was marked present for this subject
-    $stmt = $conn->prepare("SELECT COUNT(*) FROM attendance WHERE student_id = ? AND subject_id = ? AND status = 'Present'");
-    $stmt->bind_param("ii", $student_id, $subject_id);
-    $stmt->execute();
-    $stmt->bind_result($present_count);
-    $stmt->fetch();
-    $stmt->close();
+    // Count how many times the student marked "attended" (present)
+    $stmt_attendance = $conn->prepare("SELECT COUNT(*) FROM attendance WHERE student_id = ? AND subject_id = ? AND attended = 1");
+    $stmt_attendance->bind_param("ii", $student_id, $subject_id);
+    $stmt_attendance->execute();
+    $stmt_attendance->bind_result($present_count);
+    $stmt_attendance->fetch();
+    $stmt_attendance->close();
 
     $percentage = ($total_lectures > 0) ? round(($present_count / $total_lectures) * 100, 2) : 0;
 
@@ -29,7 +32,6 @@ while ($subject = $subjects_result->fetch_assoc()) {
     $attendance_percentages[] = $percentage;
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,6 +71,31 @@ while ($subject = $subjects_result->fetch_assoc()) {
             background-color: #f1f1f1;
             color: #555;
         }
+        .dashboard-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    
+}
+
+.dashboard-btn:hover {
+    background-color: #218838;
+}
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    width: 100%;
+}
+
+
     </style>
 </head>
 <body>
@@ -76,6 +103,11 @@ while ($subject = $subjects_result->fetch_assoc()) {
         <h2>Attendance Percentage Graph</h2>
         <canvas id="attendanceChart" width="600" height="400"></canvas>
     </div>
+    <div class="button-wrapper">
+    <form action="dashboard.php">
+        <button type="submit" class="dashboard-btn">Go to Dashboard</button>
+    </form>
+</div>
 
     <footer>
     @ 2025 All rights are reserved by GOOD FELLAS.
@@ -127,5 +159,7 @@ while ($subject = $subjects_result->fetch_assoc()) {
             }
         });
     </script>
+    
+
 </body>
 </html>

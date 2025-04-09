@@ -1,44 +1,59 @@
 <?php
-$host = "localhost:3307"; 
-$username = "root";  // Default XAMPP username
-$password = "";      // Default XAMPP password is empty
-$database = "attendance_db"; 
+$servername = "localhost:3307";
+$username = "root";
+$password = ""; // default for XAMPP
+$dbname = "attendance_tracker";
 
-// Create MySQL connection
-$conn = new mysqli($host, $username, $password, $database);
+// Create connection
+$conn = new mysqli($servername, $username, $password);
 
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Create tables if they don't exist
-$sql_students = "CREATE TABLE IF NOT EXISTS students (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL
-)";
+// Create database
+$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
+if ($conn->query($sql) === TRUE) {
+    //echo "Database created successfully<br>";
+} else {
+    echo "Error creating database: " . $conn->error;
+}
 
-$sql_subjects = "CREATE TABLE IF NOT EXISTS subjects (
+$conn->select_db($dbname);
+
+// Create students table
+$sql = "CREATE TABLE IF NOT EXISTS students (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) UNIQUE NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE
+)";
+$conn->query($sql);
+
+// Create subjects table
+$sql = "CREATE TABLE IF NOT EXISTS subjects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
     total_lectures INT DEFAULT 42,
-    lecture_days TEXT NOT NULL
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
 )";
+$conn->query($sql);
 
-$sql_attendance = "CREATE TABLE IF NOT EXISTS attendance (
+// Create attendance table
+$sql = "CREATE TABLE IF NOT EXISTS attendance (
     id INT AUTO_INCREMENT PRIMARY KEY,
     student_id INT NOT NULL,
     subject_id INT NOT NULL,
     date DATE NOT NULL,
-    status ENUM('Present', 'Absent') NOT NULL,
-    FOREIGN KEY (student_id) REFERENCES students(id),
-    FOREIGN KEY (subject_id) REFERENCES subjects(id)
+    attended BOOLEAN NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+    FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE,
+    UNIQUE(student_id, subject_id, date)
 )";
+$conn->query($sql);
 
-// Execute queries
-$conn->query($sql_students);
-$conn->query($sql_subjects);
-$conn->query($sql_attendance);
+//echo "Tables created successfully";
 
-//echo "Database connected and tables created successfully.";
+//$conn->close();
 ?>

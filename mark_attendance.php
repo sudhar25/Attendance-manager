@@ -4,29 +4,39 @@ session_start();
 
 // Simulated login - replace this with AWS user session
 $student_id = $_SESSION['student_id'] ?? 1;
+$message = "";
 
+// Handle attendance submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["attendance"])) {
     $date = date('Y-m-d');
+
     foreach ($_POST["attendance"] as $subject_id => $status) {
-        if (!empty($status)) {
+        if ($status !== "") {
+            $attended = ($status === "Present") ? 1 : 0;
+
             $check = $conn->prepare("SELECT id FROM attendance WHERE student_id = ? AND subject_id = ? AND date = ?");
             $check->bind_param("iis", $student_id, $subject_id, $date);
             $check->execute();
             $check->store_result();
 
             if ($check->num_rows === 0) {
-                $stmt = $conn->prepare("INSERT INTO attendance (student_id, subject_id, date, status) VALUES (?, ?, ?, ?)");
-                $stmt->bind_param("iiss", $student_id, $subject_id, $date, $status);
+                $stmt = $conn->prepare("INSERT INTO attendance (student_id, subject_id, date, attended) VALUES (?, ?, ?, ?)");
+                $stmt->bind_param("iisi", $student_id, $subject_id, $date, $attended);
                 $stmt->execute();
                 $stmt->close();
             }
             $check->close();
         }
     }
+
     $message = "Attendance marked successfully!";
 }
 
-$subjects = $conn->query("SELECT id, name FROM subjects");
+// Fetch student’s subjects
+$stmt = $conn->prepare("SELECT id, name FROM subjects WHERE student_id = ?");
+$stmt->bind_param("i", $student_id);
+$stmt->execute();
+$subjects = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -112,6 +122,7 @@ $subjects = $conn->query("SELECT id, name FROM subjects");
     <div class="container">
         <h2>Mark Attendance</h2>
         <?php if (!empty($message)) echo "<p class='message'>$message</p>"; ?>
+        
         <form method="post">
             <table>
                 <tr><th>Subject</th><th>Status</th></tr>
@@ -135,6 +146,7 @@ $subjects = $conn->query("SELECT id, name FROM subjects");
         <a href="restart.php" onclick="return confirm('Are you sure? This will delete all attendance and subjects!');">
             <button style="background-color: red;">Restart Semester</button>
         </a>
+        <a href="dashboard.php"><button style="background-color: green;">Go to Dashboard</button></a>
     </div>
 
     <footer>

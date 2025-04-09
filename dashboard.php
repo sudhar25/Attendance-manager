@@ -1,13 +1,12 @@
 <?php
-//session_start();
+session_start();
 
-//if (!isset($_SESSION['user_id'])) {
-  // User not logged in, redirect to login page
-  //header("Location: login.php");
-  //exit();
-//}
+if (!isset($_SESSION['id_token'])) {
+  header("Location: https://us-east-1pxljybngb.auth.us-east-1.amazoncognito.com/login?client_id=646365lsk8qi4qibn6qv9n8848&response_type=code&scope=email+openid+phone&redirect_uri=http://localhost/Attendance-manager/cognito_callback.php");
+  exit();
+}
+
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -110,8 +109,8 @@
   <div class="navbar">
     <div class="nav-left"><h3>Attendance Tracker</h3></div>
     <div class="nav-right">
-      <a href="#">Contact Us</a>
-      <a href="#">Logout</a>
+      <a href="About us.html">About Us</a>
+      <a href="logout.php">Logout</a>
     </div>
   </div>
 

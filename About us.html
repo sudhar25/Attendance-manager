@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: white;
+    }
+
+    .about-container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #f8f9fa;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .description {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .members {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .member {
+      background-color: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 270px;
+      text-align: center;
+    }
+
+    .member h3 {
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .social-icons a img {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.2s;
+    }
+
+    .social-icons a:hover img {
+      transform: scale(1.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+      background-color: #f1f1f1;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="about-container">
+    <h1>About Us</h1>
+    <div class="description">
+      <p>We GOOD FELLAS Team a passionate and dedicated students working together to build innovative software solutions. 
+        Our team thrives on creativity, collaboration, and curiosity. We believe in solving real-world problems with the power of technology.</p>
+    </div>
+
+    <h2>Meet Our Team</h2>
+    <div class="members">
+
+      <div class="member">
+        <h3>Sudharsan Nadar</h3>
+        <p>Backend, Frontend, Cloud Deployment</p>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/sudharsan-nadar\" title="LinkedIn">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+          </a>
+          <a href="https://github.com/sudhar25" title="GitHub">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+          </a>
+          <a href="sudharsannadar1@gmail.com" title="Gmail">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Gmail">
+          </a>
+        </div>
+      </div>
+
+      <!-- Member 2 -->
+      <div class="member">
+        <h3>Steve Jason</h3>
+        <p>Frontend, Documentation</p>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/steve-jason\">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+          </a>
+          <a href="https://github.com/56steve">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+          </a>
+          <a href="mailto:steve@gmail.com">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Gmail">
+          </a>
+        </div>
+      </div>
+
+      <!-- Member 3 -->
+      <div class="member">
+        <h3>Tanish</h3>
+        <p>Frontend, Documentation</p>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/tanish-srinivasan\">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+          </a>
+          <a href="https://github.com/TanishSrinivasan">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+          </a>
+          <a href="tanish.srinivasan03@gmail.com">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Gmail">
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <h2 style="margin-top: 40px;">Our Project</h2>
+    <div class="description">
+      <p>We developed a web-based <strong>Attendance Tracker</strong> to help students monitor their attendance throughout the semester in a simple and interactive way. Users can:</p>
+      <ul style="padding-left: 20px;">
+        <li>Add or customize subjects (default: 6)</li>
+        <li>Mark attendance daily</li>
+        <li>View attendance percentage through graphs</li>
+        <li>Reset attendance for a new semester</li>
+        <li>Login securely using AWS Cognito</li>
+      </ul>
+      <p>This project is built using HTML, CSS, JavaScript, PHP, and SQLite, with integration to AWS and . It is designed to be student-friendly, fast, and visually appealing.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    @ 2025 All rights are reserved by GOOD FELLAS.
+  </footer>
+
+</body>
+</html>
