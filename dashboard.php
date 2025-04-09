@@ -27,7 +27,7 @@ if (!isset($_SESSION['id_token'])) {
       justify-content: space-between;
       align-items: center;
       background-color: #007bff;
-      padding: 0.5rem 2rem; /* Reduced height */
+      padding: 0.5rem 2rem; 
       color: white;
     }
 
@@ -42,7 +42,7 @@ if (!isset($_SESSION['id_token'])) {
       text-decoration: underline;
     }
 
-    /* Main content */
+    
     .container {
       display: flex;
       flex-direction: column;
@@ -93,7 +93,7 @@ if (!isset($_SESSION['id_token'])) {
       background-color: #0056b3;
     }
 
-    /* Footer */
+    
     footer {
       text-align: center;
       padding: 20px;
@@ -105,7 +105,7 @@ if (!isset($_SESSION['id_token'])) {
 </head>
 <body>
 
-  <!-- Navbar -->
+  
   <div class="navbar">
     <div class="nav-left"><h3>Attendance Tracker</h3></div>
     <div class="nav-right">
@@ -114,13 +114,13 @@ if (!isset($_SESSION['id_token'])) {
     </div>
   </div>
 
-  <!-- Welcome Section -->
+
   <div style="text-align: center; margin: 30px;">
     <h2>Welcome to Attendance Tracker</h2>
     <p style="font-size: 18px;">Attendance important ha!!!!!!!</p>
   </div>
 
-  <!-- Main content -->
+  
   <div class="container">
     <div class="row">
       <div class="box">
@@ -141,7 +141,7 @@ if (!isset($_SESSION['id_token'])) {
       </div>
     </div>
 
-    <!-- Bottom guidance paragraph -->
+    
     <div style="margin-top: 40px; text-align: center; font-size: 16px; max-width: 700px; margin-left: auto; margin-right: auto;">
       <p>1.Attendance is 75% compulsory.<br>
        <br> 2.If attendance is lower than 75% then you will not be allowed for Internal Assesment.<br>
@@ -157,7 +157,7 @@ if (!isset($_SESSION['id_token'])) {
     </div>
   </div>
 
-  <!-- Footer -->
+
   <footer>
     @ 2025 All rights are reserved by GOOD FELLAS.
   </footer>

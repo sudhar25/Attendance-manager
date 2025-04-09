@@ -2,11 +2,11 @@
 include 'database.php';
 session_start();
 
-// Simulated login - replace this with AWS user session
+
 $student_id = $_SESSION['student_id'] ?? 1;
 $message = "";
 
-// Handle attendance submission
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["attendance"])) {
     $date = date('Y-m-d');
 
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["attendance"])) {
     $message = "Attendance marked successfully!";
 }
 
-// Fetch student’s subjects
+
 $stmt = $conn->prepare("SELECT id, name FROM subjects WHERE student_id = ?");
 $stmt->bind_param("i", $student_id);
 $stmt->execute();

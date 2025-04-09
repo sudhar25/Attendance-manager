@@ -57,7 +57,7 @@ if (!$email) {
     die('Email not found in ID token.');
 }
 
-// Save user to database
+
 $servername = "localhost:3307";
 $username = "root";
 $password = "";
@@ -68,14 +68,14 @@ if ($conn->connect_error) {
     die("DB Connection failed: " . $conn->connect_error);
 }
 
-// Check if student already exists
+
 $stmt = $conn->prepare("SELECT id FROM students WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    // Insert new user
+    
     $insert = $conn->prepare("INSERT INTO students (name, email) VALUES (?, ?)");
     $insert->bind_param("ss", $name, $email);
     $insert->execute();

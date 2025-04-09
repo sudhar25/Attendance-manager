@@ -1,28 +1,27 @@
 <?php
 $servername = "localhost:3307";
 $username = "root";
-$password = ""; // default for XAMPP
+$password = ""; 
 $dbname = "attendance_tracker";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Create database
+
 $sql = "CREATE DATABASE IF NOT EXISTS $dbname";
 if ($conn->query($sql) === TRUE) {
-    //echo "Database created successfully<br>";
+    
 } else {
     echo "Error creating database: " . $conn->error;
 }
 
 $conn->select_db($dbname);
 
-// Create students table
+
 $sql = "CREATE TABLE IF NOT EXISTS students (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -30,7 +29,7 @@ $sql = "CREATE TABLE IF NOT EXISTS students (
 )";
 $conn->query($sql);
 
-// Create subjects table
+
 $sql = "CREATE TABLE IF NOT EXISTS subjects (
     id INT AUTO_INCREMENT PRIMARY KEY,
     student_id INT NOT NULL,
@@ -40,7 +39,6 @@ $sql = "CREATE TABLE IF NOT EXISTS subjects (
 )";
 $conn->query($sql);
 
-// Create attendance table
 $sql = "CREATE TABLE IF NOT EXISTS attendance (
     id INT AUTO_INCREMENT PRIMARY KEY,
     student_id INT NOT NULL,
@@ -53,7 +51,5 @@ $sql = "CREATE TABLE IF NOT EXISTS attendance (
 )";
 $conn->query($sql);
 
-//echo "Tables created successfully";
 
-//$conn->close();
 ?>

@@ -32,7 +32,6 @@ if ($result->num_rows === 0) {
 }
 $stmt->close();
 
-// Count subjects already added
 $stmt_check = $conn->prepare("SELECT COUNT(*) FROM subjects WHERE student_id = ?");
 $stmt_check->bind_param("i", $student_id);
 $stmt_check->execute();
@@ -42,7 +41,7 @@ $stmt_check->close();
 
 $message = "";
 
-// Handle new subject submission
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["subject_name"])) {
     $subject_name = trim($_POST["subject_name"]);
 
@@ -56,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["subject_name"])) {
 
         if ($stmt->execute()) {
             $message = "Subject added successfully!";
-            $subject_count++; // Increment the count locally
+            $subject_count++;
         } else {
             $message = "Error: " . $stmt->error;
         }

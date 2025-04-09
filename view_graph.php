@@ -4,7 +4,7 @@ include 'database.php';
 session_start();
 $student_id = $_SESSION['student_id'] ?? 1;
 
-// Fetch subjects for this student
+
 $stmt = $conn->prepare("SELECT id, name, total_lectures FROM subjects WHERE student_id = ?");
 $stmt->bind_param("i", $student_id);
 $stmt->execute();
@@ -18,7 +18,7 @@ while ($subject = $subjects_result->fetch_assoc()) {
     $subject_name = $subject['name'];
     $total_lectures = $subject['total_lectures'];
 
-    // Count how many times the student marked "attended" (present)
+    
     $stmt_attendance = $conn->prepare("SELECT COUNT(*) FROM attendance WHERE student_id = ? AND subject_id = ? AND attended = 1");
     $stmt_attendance->bind_param("ii", $student_id, $subject_id);
     $stmt_attendance->execute();
