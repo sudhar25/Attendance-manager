@@ -29,6 +29,7 @@ if ($result->num_rows === 0) {
     $row = $result->fetch_assoc();
     $student_id = $row['id'];
 }
+$_SESSION['student_id'] = $student_id; //storing for each user's subjects
 $stmt->close();
 
 $stmt_check = $conn->prepare("SELECT COUNT(*) FROM subjects WHERE student_id = ?");
